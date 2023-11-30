@@ -42,4 +42,3 @@ def Speak(*args):
             sleep(18)
         else:
             sleep(2)
-Speak("hello ","bye")

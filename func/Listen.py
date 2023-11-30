@@ -12,7 +12,7 @@ recognizer.operation_timeout = None  # seconds after an internal operation (e.g.
 recognizer.phrase_threshold = 0.3  # minimum seconds of speaking audio before we consider the speaking audio a phrase - values below this are ignored (for filtering out clicks and pops)
 recognizer.non_speaking_duration = 0.5  # seconds of non-speaking audio to keep on both sides of the recording
 
-def Listen():
+def Listen() ->str|None:
     # Use the default microphone as the source
     with sr.Microphone() as source:
         print("Listening...")
@@ -39,5 +39,3 @@ def Listen():
             print(f"Error: {e}")
             return None
 
-# Call the function to recognize speech
-recognized_text = Listen()

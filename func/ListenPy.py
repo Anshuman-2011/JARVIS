@@ -33,9 +33,9 @@ def Listen() ->str|None:
 
         except sr.UnknownValueError:
             print("Could not understand the audio.")
-            return None
+            return Listen()
 
         except sr.RequestError as e:
             print(f"Error: {e}")
-            return None
+            return Listen()
 

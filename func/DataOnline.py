@@ -28,5 +28,3 @@ def Online_Scraper(query,PRINT=True):
         except Exception:
             pass
     return None
-
-print(Online_Scraper("what was the latest video by carry minati"))

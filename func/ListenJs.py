@@ -6,7 +6,7 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--use-fake-ui-for-media-stream")
 chrome_options.add_argument("--headless=new")
 driver = webdriver.Chrome(options=chrome_options)
-website = r"C:\Users\shukl\OneDrive\Desktop\JARVIS\data\voice.html"
+website = r"C:\Users\shukl\OneDrive\Desktop\30\JARVIS 5y\data\voice.html"
 
 driver.get(website)
 

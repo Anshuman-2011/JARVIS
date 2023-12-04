@@ -25,7 +25,7 @@ def center(points):
 
 
 # Print the result
-def Ocr(st, double_click=False):
+def Ocr(st, double_click=False,**kwargs):
     screen = np.array(ImageGrab.grab())
 
     image_np = cv2.cvtColor(screen, cv2.COLOR_RGB2BGR)

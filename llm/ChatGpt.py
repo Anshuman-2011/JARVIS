@@ -9,7 +9,55 @@ messages = [{"role": "system",
              "content": "use modules like webbrowser, pyautogui, time,pyperclip,random,mouse,wikipedia,keyboard,datetime,tkinter,PyQt5 etc"},
             {"role": "user", "content": "open google chrome"},
             {"role": "assistant",
-             "content": "```python\nimport webbrowser\nwebbrowser.open('https://www.google.com')```"}
+             "content": "```python\nimport webbrowser\nwebbrowser.open('https://www.google.com')```"},
+            {"role": "system", "content": f"hear are inbuilt functions creaded in python you can use it if required."+"""#sample usage
+from Genration_Of_Images import Generate_Images , Show_Image
+
+IMGS = Generate_Images(prompt="iron man")
+
+print(IMGS)
+#output : ["data\cat1.jpg","data\cat2.jpg","data\cat3.jpg","data\cat4.jpg"]
+
+IMGS_TO_SHOW = Show_Image(IMGS)
+
+IMGS_TO_SHOW.open(0)
+#output : opens the image from path IMGS[0]
+
+IMGS_TO_SHOW.open(1)
+#output : opens the image from path IMGS[1]
+
+IMGS_TO_SHOW.close(0)
+#output : closes the image from path IMGS[0]
+
+IMGS_TO_SHOW.close(1)
+#output : closes the image from path IMGS[1]
+"""},
+            {"role": "user" , "content": "Jarvis generate cute cat image ***use python programing language. just write complete code nothing else***"},
+            {"role": "assistant",
+             "content": "ok sir, writing python code to do it"+"""
+```python
+from Genration_Of_Images import Generate_Images , Show_Image ,Extra
+
+IMGS = Generate_Images(prompt="A playful kitten with bright eyes and a fluffy tail.")
+
+IMGS_TO_SHOW = Show_Image(IMGS)
+IMGS_TO_SHOW.open(0)
+```"""},
+{"role": "user" , "content": "Jarvis show me next image. ***use python programing language. just write complete code nothing else***"},
+            {"role": "assistant",
+             "content":"""
+```python
+IMGS_TO_SHOW.close(0)
+IMGS_TO_SHOW.open(1)
+```"""},
+{"role": "user" , "content": "Jarvis close all images"},
+            {"role": "assistant",
+             "content":"""
+```python
+for i in range(4):
+    IMGS_TO_SHOW.close(i)
+```"""},
+            
             ]
 
 

@@ -9,11 +9,13 @@ from buildin import ChromeCode
 from buildin import KnowApps
 import pygetwindow as gw
 import keyboard
-
+import time
+from Genration_Of_Images import *
 link=input("inter colab + ngrok like check the video. No link enter 69 -> ")
 if link=="69":
     from llm.ChatGpt import ChatGpt
     from func.OcrOffline import Ocr
+
 if __name__=="__main__":
     while 1:
         Q=Listen()
@@ -66,7 +68,7 @@ if __name__=="__main__":
                 elif Chat(QL)[1]>0.99:
                     Speak(Chat(QL)[0])
                 else:
-                    reply=ChatGpt(f"{Q} ***reply like tony stark jarvis in less words***",link=link)
+                    reply=ChatGpt(f"{Q} ***reply like tony stark jarvis in less words and don't write code***",link=link)
                     Speak(reply)
 
 

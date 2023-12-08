@@ -12,13 +12,14 @@ import random
 import pygetwindow as gw
 import keyboard
 import time
+from autofunc.youtube import GetTranscript
 from Genration_Of_Images import *
 from colorama import Fore, Back, Style
 print()
 link=input(Fore.RED+"inter colab + ngrok like check the video. No link enter 69 -> ")
 if link=="69":
-    from llm.OgChatGpt import ChatGpt
-    from llm.ChatGpt import ChatGpt as GPT
+    #from llm.OgChatGpt import ChatGpt
+    from llm.ChatGpt import ChatGpt
     from func.OcrOffline import Ocr
 
 if __name__=="__main__":
@@ -28,6 +29,7 @@ if __name__=="__main__":
         LQ=len(Q.split(" "))
         SQ=Q.split(" ")[0]
         EQ=Q.split(" ")[-1]
+        NQ=QL.removeprefix("jarvis")
         CURRENT_APP=""
         try:
             CURRENT_APP = gw.getActiveWindowTitle()
@@ -43,29 +45,40 @@ if __name__=="__main__":
             QL.replace("double","")
             A=Ocr(QL.strip(),url=link)
             Speak(A)
+          
+        elif ("summarize" in NQ or "transcribe" in NQ or "translate") and "video" in NQ:
+            transcript=GetTranscript()
+            if transcript == None:
+                Speak("No sir, i can't do that")
+            else:
+                responce = ChatGpt(transcript+f" **{NQ.replace('video','text')}**")
+                Speak(responce)
 
         elif "jarvis"==SQ.lower():
-            code = GPT(f"{Q} ***use python programing language. just write complete code nothing else*** **you can use the module that i provided if required**",link=link)
+            code = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else*** **you can use the module that i provided if required**",link=link)
             code = Filter(code)
-            Done=ExecCode(code)
-            print(Done)
-            if Done:
-                Speak(random.choice(GoodMsg))
+            if "from Genration_Of_Images import" in code or "import" not in code:
+                exec(code)
             else:
-                for i in range(3):
-                    with open(r"error.log", "r") as f:
-                        res = f.read()
-                        if res != "":
-                            GPT(f"{res} /n" + "**fix this and write full code again. with different approach**")
-                            code = Filter(code)
-                            if code==None:
+                Done=ExecCode(code)
+                print(Done)
+                if Done:
+                    Speak(random.choice(GoodMsg))
+                else:
+                    for i in range(3):
+                        with open(r"error.log", "r") as f:
+                            res = f.read()
+                            if res != "":
+                                ChatGpt(f"{res} /n" + "**fix this and write full code again. with different approach**")
+                                code = Filter(code)
+                                if code==None:
+                                    break
+                                Done=ExecCode(code)
+                                if Done==True:
+                                    break
+                            else:
                                 break
-                            Done=ExecCode(code)
-                            if Done==True:
-                                break
-                        else:
-                            break
-                Speak("Sorry sir i Can't Do that")
+                    Speak("Sorry sir i Can't Do that")
         elif CURRENT_APP_NAME in KnowApps:
             
             Func_=KnowApps[CURRENT_APP_NAME]

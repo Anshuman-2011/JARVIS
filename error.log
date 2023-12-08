@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "C:\Users\shukl\OneDrive\Desktop\30\JARVIS 9\temp.py", line 2, in <module>
-    IMGS_iron_man = Generate_Images(prompt="Iron Man")
-NameError: name 'Generate_Images' is not defined

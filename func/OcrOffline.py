@@ -11,9 +11,9 @@ import easyocr
 import numpy as np
 import pyautogui as pg
 from PIL import ImageGrab
+NEWVARKAR=0
 
-reader = easyocr.Reader(['en'])
-
+reader=None
 # Print the closest match
 def center(points):
     # Calculate the sum of x and y coordinates
@@ -26,6 +26,10 @@ def center(points):
 
 # Print the result
 def Ocr(st, double_click=False,**kwargs):
+    global NEWVARKAR,reader
+    if NEWVARKAR==0:
+        exec("reader = easyocr.Reader(['en'])")
+        NEWVARKAR+=1
     screen = np.array(ImageGrab.grab())
 
     image_np = cv2.cvtColor(screen, cv2.COLOR_RGB2BGR)

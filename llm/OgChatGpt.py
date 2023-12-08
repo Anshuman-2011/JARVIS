@@ -30,14 +30,15 @@ def ChatGpt(query,link:str=""):
     sleep(1)
     while 1:
         try:
-            sleep(1)
+            sleep(0.1)
             driver.find_element(By.XPATH,'//*[@id="__next"]/div[1]/div[2]/main/div[2]/div[2]/form/div/div/div/button').click()
             break
         except :
             pass
+    driver.find_elements(By.CLASS_NAME,"markdown")[-1].click()
     A=driver.find_elements(By.CLASS_NAME,"markdown")[-1].text
     while 1:
-        sleep(1)
+        sleep(0.1)
         if driver.find_elements(By.CLASS_NAME,"markdown")[-1].text==A:
             break
         else:

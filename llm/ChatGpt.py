@@ -89,15 +89,3 @@ def ChatGpt(*args,**kwargs):
 if __name__=="__main__":
     ChatGpt(input(">>> "))
 
-# Certainly! Here's a Python code snippet that opens Google Chrome using the `webbrowser` module:
-
-# ```python
-# import webbrowser
-
-# chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'  # Path to your Chrome executable
-# url = 'https://www.google.com'  # URL to open in Chrome
-
-# webbrowser.get(chrome_path).open(url)
-# ```
-
-# Please make sure to replace the `chrome_path` variable with the correct path to your Chrome executable.

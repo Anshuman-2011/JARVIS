@@ -14,11 +14,11 @@ import keyboard
 import time
 from Genration_Of_Images import *
 from colorama import Fore, Back, Style
-from llm.OgChatGpt import ChatGpt
 print()
 link=input(Fore.RED+"inter colab + ngrok like check the video. No link enter 69 -> ")
 if link=="69":
     from llm.OgChatGpt import ChatGpt
+    from llm.ChatGpt import ChatGpt as GPT
     from func.OcrOffline import Ocr
 
 if __name__=="__main__":
@@ -45,7 +45,7 @@ if __name__=="__main__":
             Speak(A)
 
         elif "jarvis"==SQ.lower():
-            code = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else***",link=link)
+            code = GPT(f"{Q} ***use python programing language. just write complete code nothing else*** **you can use the module that i provided if required**",link=link)
             code = Filter(code)
             Done=ExecCode(code)
             print(Done)
@@ -56,8 +56,8 @@ if __name__=="__main__":
                     with open(r"error.log", "r") as f:
                         res = f.read()
                         if res != "":
-                            ChatGpt(f"{res} /n" + "**fix this and write full code again. with different approach**")
-                            code = CodeFilter(code)
+                            GPT(f"{res} /n" + "**fix this and write full code again. with different approach**")
+                            code = Filter(code)
                             if code==None:
                                 break
                             Done=ExecCode(code)

@@ -2,7 +2,7 @@
 from os import system , listdir
 from PIL import Image
 
-C=ENTER_THE_EDGE_COKKEEE
+C=COOKKEEEE
 def Generate_Images(prompt:str):
     system(f'python -m BingImageCreator --prompt "{prompt}" -U {C}')
     return listdir("output")[-4:]

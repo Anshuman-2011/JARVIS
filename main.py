@@ -45,7 +45,7 @@ if __name__=="__main__":
             Speak(A)
 
         elif "jarvis"==SQ.lower():
-            code = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else***",link=link)
+            code = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else*** **you can use functions that i gave to you**",link=link)
             code = Filter(code)
             Done=ExecCode(code)
             print(Done)

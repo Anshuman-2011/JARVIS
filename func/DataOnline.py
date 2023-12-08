@@ -2,7 +2,9 @@
 #pip install bs4
 import requests
 from bs4 import BeautifulSoup
-
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
 classes=["zCubwf","hgKElc","LTKOO sY7ric","Z0LcW","gsrt vk_bk FzvWSb YwPhnf","pclqee","tw-Data-text tw-text-small tw-ta",
     "IZ6rdc","O5uR6d LTKOO","vlzY6d","webanswers-webanswers_table__webanswers-table",
     "dDoNo ikb4Bb gsrt","sXLaOe","LWkfKe","VQF4g","qv3Wpe","kno-rdesc","SPZz6b"]
@@ -23,7 +25,7 @@ def Online_Scraper(query,PRINT=True):
         try:
             result=soup.find(class_=i).get_text()
             if PRINT:
-                print("by class ",i)
+                print(f"{Fore.GREEN}by class {i}")
             return result
         except Exception:
             pass

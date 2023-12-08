@@ -3,9 +3,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from time import sleep
-
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
+chrome_options.add_argument('--headless=new')
 chrome_options.headless = True
 driver = webdriver.Chrome(options=chrome_options)
 website = r"https://ttsmp3.com/text-to-speech/British2English/"
@@ -22,7 +24,7 @@ def Speak(*args):
         pass
     else:
         print("")
-        print(f"AI: {Text}.")
+        print(Fore.CYAN+Text)
         print("")
         Data = str(Text)
         driver.find_element(By.ID, "voicetext").send_keys(Data)

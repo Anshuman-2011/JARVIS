@@ -1,6 +1,8 @@
 #!pip install SpeechRecognition
 import speech_recognition as sr
-
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
 # Initialize recognizer
 recognizer = sr.Recognizer()
 recognizer.energy_threshold = 300  # minimum audio energy to consider for recording
@@ -15,7 +17,9 @@ recognizer.non_speaking_duration = 0.5  # seconds of non-speaking audio to keep 
 def Listen() ->str|None:
     # Use the default microphone as the source
     with sr.Microphone() as source:
-        print("Listening...")
+        print()
+        print(Fore.MAGENTA + "LISTENING ... ")
+        print()
 
         # Adjust for ambient noise
         recognizer.adjust_for_ambient_noise(source)
@@ -24,11 +28,12 @@ def Listen() ->str|None:
         audio_data = recognizer.listen(source)
 
         try:
-            print("Recognizing...")
-
+            print(Fore.MAGENTA+"Recognizing...")
+            print()
             # Recognize speech using Google Speech Recognition
             text = recognizer.recognize_google(audio_data)
-            print(f"Speech recognized: {text}")
+            print(Fore.YELLOW+"YOU SAID : " + text)
+            print()
             return text
 
         except sr.UnknownValueError:
@@ -39,3 +44,6 @@ def Listen() ->str|None:
             print(f"Error: {e}")
             return Listen()
 
+if __name__=="__main__":
+    while 1:
+        Listen()

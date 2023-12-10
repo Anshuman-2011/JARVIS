@@ -16,16 +16,16 @@ from autofunc.youtube import GetTranscript
 from Genration_Of_Images import *
 from colorama import Fore, Back, Style
 import pyperclip as pi
-print()
-link=input(Fore.RED+"inter colab + ngrok like check the video. No link enter 69 -> ")
-if link=="69":
-    #from llm.OgChatGpt import ChatGpt
-    from llm.ChatGpt import ChatGpt,messages
-    from func.OcrOffline import Ocr
+from mtranslate import translate
+#remove this 2 imports to run online
+from llm.ChatGpt import ChatGpt,messages
+from func.OcrOffline import Ocr
+link=""
 
 if __name__=="__main__":
     while 1:
         Q=Listen()
+        Q = translate(Q, 'en', 'auto')
         QL=Q.lower()
         LQ=len(Q.split(" "))
         SQ=Q.split(" ")[0]
@@ -40,10 +40,11 @@ if __name__=="__main__":
         CURRENT_APP_NAME=CURRENT_APP.split(" - ")[-1]
 
         if (SQ=="click" or (SQ=="double" and "click" in Q)) and LQ<7:
-            QL.replace("click","")
-            QL.replace("on","")
-            QL.replace("jarvis","")
-            QL.replace("double","")
+            QL=QL.replace("click","")
+            QL=QL.replace("on","")
+            QL=QL.replace("jarvis","")
+            QL=QL.replace("double","")
+            QL=QL.replace("button","")
             A=Ocr(QL.strip(),url=link)
             Speak(A)
 

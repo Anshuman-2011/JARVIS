@@ -2,7 +2,7 @@ import os
 import pygame
 
 def Speak(data):
-    command = f'edge-tts --voice "en-CA-LiamNeural" --pitch=+9Hz --rate=+22% --text "{data}" --write-media "data.mp3" '
+    command = f'edge-tts --voice "en-CA-LiamNeural" --pitch=+5Hz --rate=+22% --text "{data}" --write-media "data.mp3" '
     os.system(command)
     pygame.init()
     pygame.mixer.init()

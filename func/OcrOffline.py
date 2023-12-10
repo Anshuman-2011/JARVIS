@@ -42,11 +42,11 @@ def Ocr(st, double_click=False,**kwargs):
             if i[1].lower() == closest_match[0].lower():
 
                 if double_click:
-                    pg.click(center(i[0]))
+                    pg.click(x=i[0][0],y=i[0][1], clicks=2, interval=1)
                     pg.sleep(0.35)
-                    pg.click(center(i[0]))
+                    pg.click(x=i[0][0],y=i[0][1], clicks=2, interval=1)
                 else:
-                    pg.click(center(i[0]))
+                    pg.click(x=i[0][0],y=i[0][1], clicks=2, interval=1)
                 break
 
         return "clicked " + st + " button sir."

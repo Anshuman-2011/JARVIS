@@ -25,12 +25,6 @@ IMGS_TO_SHOW.open(0)
 
 IMGS_TO_SHOW.open(1)
 #output : opens the image from path IMGS[1]
-
-IMGS_TO_SHOW.close(0)
-#output : closes the image from path IMGS[0]
-
-IMGS_TO_SHOW.close(1)
-#output : closes the image from path IMGS[1]
 """},
             {"role": "user" , "content": "Jarvis generate cute cat image ***use python programing language. just write complete code nothing else***"},
             {"role": "assistant",
@@ -49,22 +43,22 @@ IMGS_TO_SHOW.open(0)
 ```python
 IMGS_TO_SHOW.close(0)
 IMGS_TO_SHOW.open(1)
-```"""},
-{"role": "user" , "content": "Jarvis close all images"},
-            {"role": "assistant",
-             "content":"""
-```python
-for i in range(4):
-    IMGS_TO_SHOW.close(i)
-```"""},
+```"""}
             
             ]
-
+def MsgDelAuto():
+    global messages
+    x = len(messages)
+    if x > 14:
+        new_ms = messages[0:11] + messages[-4:]
+        return new_ms
+    else:
+        return messages
 
 def ChatGpt(*args,**kwargs):
     global messages
     assert args!=()
-
+    MsgDelAuto()
     message=""
     for i in args:
         message+=i
@@ -74,7 +68,7 @@ def ChatGpt(*args,**kwargs):
 
     response = g4f.ChatCompletion.create(
         model="gpt-4-32k-0613",
-        provider=g4f.Provider.FakeGpt,
+        provider=g4f.Provider.GPTalk,
         messages=messages,
         stream=True,
     )

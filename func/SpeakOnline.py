@@ -2,6 +2,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
+
 from time import sleep
 import colorama
 from colorama import Fore, Back, Style
@@ -9,7 +12,7 @@ colorama.init(autoreset=True)
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless=new')
 chrome_options.headless = True
-driver = webdriver.Chrome(options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 website = r"https://ttsmp3.com/text-to-speech/British2English/"
 driver.get(website)
 Buttonselection = Select(driver.find_element(by=By.ID, value='sprachwahl'))

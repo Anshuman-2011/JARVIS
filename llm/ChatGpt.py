@@ -74,13 +74,14 @@ def ChatGpt(*args,**kwargs):
 
     response = g4f.ChatCompletion.create(
         model="gpt-4-32k-0613",
-        provider=g4f.Provider.GPTalk,
+        provider=g4f.Provider.FakeGpt,
         messages=messages,
         stream=True,
     )
+    
     ms=""
     for message in response:
-        ms+=message
+        ms+=str(message)
         print(message,end="",flush=True)
     print()
     messages.append({"role": "assistant", "content": ms})

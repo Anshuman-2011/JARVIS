@@ -1,4 +1,3 @@
-youtube_link = 'prEjENACf8k'
 from youtube_transcript_api import YouTubeTranscriptApi
 from keyboard import press,press_and_release
 import pyperclip

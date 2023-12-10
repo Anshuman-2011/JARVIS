@@ -1,5 +1,5 @@
 from func.Chat import Chat
-from func.SpeakOffline import Speak
+from func.SpeakOffline2 import Speak
 from func.ListenJs import Listen
 from func.DataOnline import Online_Scraper
 from func.OcrOnline import Ocr
@@ -15,11 +15,12 @@ import time
 from autofunc.youtube import GetTranscript
 from Genration_Of_Images import *
 from colorama import Fore, Back, Style
+import pyperclip as pi
 print()
 link=input(Fore.RED+"inter colab + ngrok like check the video. No link enter 69 -> ")
 if link=="69":
     #from llm.OgChatGpt import ChatGpt
-    from llm.ChatGpt import ChatGpt
+    from llm.ChatGpt import ChatGpt,messages
     from func.OcrOffline import Ocr
 
 if __name__=="__main__":
@@ -45,8 +46,18 @@ if __name__=="__main__":
             QL.replace("double","")
             A=Ocr(QL.strip(),url=link)
             Speak(A)
-          
-        elif ("summarize" in NQ or "transcribe" in NQ or "translate") and "video" in NQ:
+
+        elif "read data from my clipboard" in QL or "read my clipboard" in QL or "read clipboard" in QL or "copy data from my clipboard" in QL:
+            QL = QL.replace("read data from my clipboard", "")
+            QL = QL.replace("read my clipboard", "")
+            QL = QL.replace("read clipboard", "")
+            keyboard.press_and_release("ctrl + c")
+            Speak("ok just give me a second")
+            jo = pi.paste()
+            messages.append({"role": "user", "content": jo})
+            Speak("data copied")
+
+        elif ("summarize" in NQ or "transcribe" in NQ or "translate") and "video" in NQ and LQ<10:
             transcript=GetTranscript()
             if transcript == None:
                 Speak("No sir, i can't do that")
@@ -79,6 +90,7 @@ if __name__=="__main__":
                             else:
                                 break
                     Speak("Sorry sir i Can't Do that")
+        
         elif CURRENT_APP_NAME in KnowApps:
             
             Func_=KnowApps[CURRENT_APP_NAME]
@@ -104,7 +116,6 @@ if __name__=="__main__":
             else:
                 reply=ChatGpt(f"{Q} ***reply like tony stark jarvis in less words and don't write code***",link=link)
                 Speak(reply)
-
 
 
 

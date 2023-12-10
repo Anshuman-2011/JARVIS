@@ -74,7 +74,7 @@ def ChatGpt(*args,**kwargs):
 
     response = g4f.ChatCompletion.create(
         model="gpt-4-32k-0613",
-        provider=g4f.Provider.FakeGpt,
+        provider=g4f.Provider.GPTalk,
         messages=messages,
         stream=True,
     )

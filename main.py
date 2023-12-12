@@ -1,9 +1,9 @@
-from func.Chat import Chat
-from func.SpeakOffline2 import Speak
-from func.ListenJs import Listen
-from func.DataOnline import Online_Scraper
-from func.OcrOnline import Ocr
-from func.ExecCode import ExecCode
+from func.Osrc.Chat import Chat
+from func.Speak.SpeakOffline2 import Speak
+from func.Listen.ListenJs import Listen
+from func.Osrc.DataOnline import Online_Scraper
+#from func.OcrOnline import Ocr
+from func.XTRA.ExecCode import ExecCode
 from llm.ChatGptColab import ChatGpt
 from llm.Filter import CodeFilter,Filter
 from buildin import GoodMsg
@@ -12,6 +12,7 @@ import random
 import pygetwindow as gw
 import keyboard
 import time
+from os import startfile,getcwd
 from autofunc.youtube import GetTranscript
 from Genration_Of_Images import *
 from colorama import Fore, Back, Style
@@ -19,7 +20,10 @@ import pyperclip as pi
 from mtranslate import translate
 #remove this 2 imports to run online
 from llm.ChatGpt import ChatGpt,messages
-from func.OcrOffline import Ocr
+from func.Ocr.OcrOffline import Ocr
+from func.XTRA.Clap import MainClapExe
+from Powerpointer.app import get_bot_response
+MainClapExe()
 link=""
 
 if __name__=="__main__":
@@ -47,6 +51,19 @@ if __name__=="__main__":
             QL=QL.replace("button","")
             A=Ocr(QL.strip(),url=link)
             Speak(A)
+
+        elif "powerpoint"in QL and NQ.split(" ")[0].lower()=="create":
+            path=get_bot_response(Q)
+            startfile(fr"{getcwd()}\{path}")
+            Speak("done sir")
+            Speak(random.choice(GoodMsg))
+        
+        elif QL.find("read my selection")==0 or QL.find("read my selected text")==0:
+            Speak("Sure sir reading your selected data")
+            keyboard.press_and_release("ctrl + c")
+            time.sleep(1)
+            clipboard_data = pi.paste()
+            Speak(clipboard_data)
 
         elif "read data from my clipboard" in QL or "read my clipboard" in QL or "read clipboard" in QL or "copy data from my clipboard" in QL:
             QL = QL.replace("read data from my clipboard", "")

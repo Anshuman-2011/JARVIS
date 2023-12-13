@@ -10,7 +10,7 @@ from buildin import GoodMsg
 from buildin import KnowApps
 import random
 import pygetwindow as gw
-import keyboard
+import keyboard,pyautogui as pg
 import time
 from os import startfile,getcwd
 from autofunc.youtube import GetTranscript
@@ -51,6 +51,19 @@ if __name__=="__main__":
             QL=QL.replace("button","")
             A=Ocr(QL.strip(),url=link)
             Speak(A)
+        
+        elif NQ in ["optimize this code","write code for this","optimise this code","jarvis optimise this code"]:
+            keyboard.press_and_release("ctrl + c")
+            time.sleep(1)
+            clipboard_data = pi.paste()
+            r=ChatGpt(f"{clipboard_data} **{NQ}**")
+            r=Filter(r)
+            if r==None:
+                Speak("i can't do that sir")
+            else:
+                pi.copy(r)
+                keyboard.press_and_release("ctrl + v")
+                Speak(random.choice(GoodMsg))
 
         elif "powerpoint"in QL and NQ.split(" ")[0].lower()=="create":
             path=get_bot_response(Q)
@@ -84,31 +97,34 @@ if __name__=="__main__":
                 Speak(responce)
 
         elif "jarvis"==SQ.lower():
-            code = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else*** **you can use the module that i provided if required**",link=link)
-            code = Filter(code)
-            if "from Genration_Of_Images import" in code or "import" not in code:
-                exec(code)
-            else:
-                Done=ExecCode(code)
-                print(Done)
-                if Done:
-                    Speak(random.choice(GoodMsg))
+            responce = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else*** **you can use the module that i provided if required**",link=link)
+            code = Filter(responce)
+            if code!=None:
+                if "from Genration_Of_Images import" in code or "import" not in code:
+                    exec(code)
                 else:
-                    for i in range(3):
-                        with open(r"error.log", "r") as f:
-                            res = f.read()
-                            if res != "":
-                                ChatGpt(f"{res} /n" + "**fix this and write full code again. with different approach**")
-                                code = Filter(code)
-                                if code==None:
+                    Done=ExecCode(code)
+                    print(Done)
+                    if Done:
+                        Speak(random.choice(GoodMsg))
+                    else:
+                        for i in range(3):
+                            with open(r"error.log", "r") as f:
+                                res = f.read()
+                                if res != "":
+                                    ChatGpt(f"{res} /n" + "**fix this and write full code again. with different approach**")
+                                    code = Filter(code)
+                                    if code==None:
+                                        break
+                                    Done=ExecCode(code)
+                                    if Done==True:
+                                        break
+                                else:
                                     break
-                                Done=ExecCode(code)
-                                if Done==True:
-                                    break
-                            else:
-                                break
-                    Speak("Sorry sir i Can't Do that")
-        
+                        Speak("Sorry sir i Can't Do that")
+            else:
+                Speak(responce)
+
         elif CURRENT_APP_NAME in KnowApps:
             
             Func_=KnowApps[CURRENT_APP_NAME]

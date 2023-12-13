@@ -47,7 +47,7 @@ def MsgDelAuto():
     print(messages.__len__())
     x = len(messages.__str__())
     print(x)
-    if x>7500:
+    if x>6500:
         messages.pop(10)
         return MsgDelAuto()
     else:

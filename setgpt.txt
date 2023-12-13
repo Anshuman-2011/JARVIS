@@ -206,3 +206,4 @@ show_next_image(image_paths, current_index)
 Replace 'image_paths' with your list of image paths and 'display_image' with the method you have for displaying images. This code snippet increments the index to display the next image in the list.
 
 Please ensure that you have a valid list of image paths and a method/function to display images within your Python environment to execute this code successfully.
+

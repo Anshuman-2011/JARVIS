@@ -4,7 +4,7 @@ from PIL import Image
 
 C= open(r"keys\C","r").readline()
 def Generate_Images(prompt:str):
-    system(f'python -m BingImageCreator --prompt "{prompt}" -U {C}')
+    system(f'python -m BingImageCreator --prompt "{prompt}" -U "{C}"')
     return listdir("output")[-4:]
 
 class Show_Image:

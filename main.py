@@ -23,6 +23,7 @@ from llm.ChatGpt import ChatGpt,messages
 from func.Ocr.OcrOffline import Ocr
 from func.XTRA.Clap import MainClapExe
 from Powerpointer.app import get_bot_response
+
 MainClapExe()
 link=""
 

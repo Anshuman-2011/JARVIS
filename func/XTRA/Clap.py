@@ -1,7 +1,7 @@
 import sounddevice as sd
 import numpy as np
 
-threshold = 90
+threshold = int(open(r"keys\threshold","r").readline())
 Clap = False
 
 def detect_clap(indata,frames,time,status):

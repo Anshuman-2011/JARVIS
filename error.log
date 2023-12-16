@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\shukl\OneDrive\Desktop\30\JARVIS 15\temp.py", line 80, in <module>
+    ball.setx(ball.xcor() + ball.dx)
+  File "C:\Users\shukl\AppData\Local\Programs\Python\Python310\lib\turtle.py", line 1808, in setx
+    self._goto(Vec2D(x, self._position[1]))
+  File "C:\Users\shukl\AppData\Local\Programs\Python\Python310\lib\turtle.py", line 3159, in _goto
+    screen._pointlist(self.currentLineItem),
+  File "C:\Users\shukl\AppData\Local\Programs\Python\Python310\lib\turtle.py", line 753, in _pointlist
+    cl = self.cv.coords(item)
+  File "<string>", line 1, in coords
+  File "C:\Users\shukl\AppData\Local\Programs\Python\Python310\lib\tkinter\__init__.py", line 2795, in coords
+    self.tk.call((self._w, 'coords') + args))]
+_tkinter.TclError: invalid command name ".!canvas"

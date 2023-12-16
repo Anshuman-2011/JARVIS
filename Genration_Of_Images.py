@@ -2,9 +2,9 @@
 from os import system , listdir
 from PIL import Image
 
-C= open(r"keys\threshold","r").readline()
+C= open(r"keys\C","r").readline()
 def Generate_Images(prompt:str):
-    system(f'python -m BingImageCreator --prompt "{prompt}" -U {C}')
+    system(f'python -m BingImageCreator --prompt "{prompt}" -U "{C}"')
     return listdir("output")[-4:]
 
 class Show_Image:
@@ -20,3 +20,4 @@ class Show_Image:
     def close(self,no):
         #TODO
         pass
+

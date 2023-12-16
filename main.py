@@ -65,7 +65,6 @@ if __name__=="__main__":
                 pi.copy(r)
                 keyboard.press_and_release("ctrl + v")
                 Speak(random.choice(GoodMsg))
-
         elif "powerpoint"in QL and NQ.split(" ")[0].lower()=="create":
             path=get_bot_response(Q)
             startfile(fr"{getcwd()}\{path}")

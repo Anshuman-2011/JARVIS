@@ -20,4 +20,3 @@ class Show_Image:
     def close(self,no):
         #TODO
         pass
-

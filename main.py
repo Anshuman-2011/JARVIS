@@ -23,8 +23,12 @@ from llm.ChatGpt import ChatGpt,messages
 from func.Ocr.OcrOffline import Ocr
 from func.XTRA.Clap import MainClapExe
 from Powerpointer.app import get_bot_response
+from auth.FaceAuth import FaceAuth
 
 MainClapExe()
+Speak("Face Id required.")
+ID=FaceAuth()
+Speak(f"Login with Face Id of {ID}")
 link=""
 
 if __name__=="__main__":

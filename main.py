@@ -4,13 +4,13 @@ from func.Listen.ListenJs import Listen
 from func.Osrc.DataOnline import Online_Scraper
 #from func.OcrOnline import Ocr
 from func.XTRA.ExecCode import ExecCode
-from llm.ChatGptColab import ChatGpt
-from llm.Filter import CodeFilter,Filter
+# from llm.ChatGptColab import ChatGpt
+from llm.Filter import Filter
 from buildin import GoodMsg
 from buildin import KnowApps
 import random
 import pygetwindow as gw
-import keyboard,pyautogui as pg
+import keyboard
 import time
 from os import startfile,getcwd
 from autofunc.youtube import GetTranscript
@@ -23,12 +23,13 @@ from llm.ChatGpt import ChatGpt,messages
 from func.Ocr.OcrOffline import Ocr
 from func.XTRA.Clap import MainClapExe
 from Powerpointer.app import get_bot_response
-from auth.FaceAuth import FaceAuth
+# from auth.FaceAuth import FaceAuth
+from llm.Mistral2 import Mistral7B
 
 MainClapExe()
-Speak("Face Id required.")
-ID=FaceAuth()
-Speak(f"Login with Face Id of {ID}")
+# Speak("Face Id required.")
+# ID=FaceAuth()
+# Speak(f"Login with Face Id of {ID}")
 link=""
 
 if __name__=="__main__":
@@ -143,7 +144,8 @@ if __name__=="__main__":
                     elif Chat(QL)[1]>0.99:
                         Speak(Chat(QL)[0])
                     else:
-                        reply=ChatGpt(f"{Q} ***reply like tony stark jarvis in less words and don't write code***",link=link)
+                        messages.append({"role": "user", "content": Q})
+                        reply=Mistral7B(Q+" ***reply like tony stark jarvis in less words and don't write code***")
                         Speak(reply)
         else :
             web=Online_Scraper(Q)
@@ -152,7 +154,8 @@ if __name__=="__main__":
             elif Chat(QL)[1]>0.99:
                 Speak(Chat(QL)[0])
             else:
-                reply=ChatGpt(f"{Q} ***reply like tony stark jarvis in less words and don't write code***",link=link)
+                messages.append({"role": "user", "content": Q})
+                reply=Mistral7B(Q+" ***reply like tony stark jarvis in less words and don't write code***")
                 Speak(reply)
 
 
@@ -163,9 +166,4 @@ if __name__=="__main__":
 
 
 
-
-
-
-
-
-
+#5x + 7 = 11

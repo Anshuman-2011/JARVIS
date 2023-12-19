@@ -25,6 +25,7 @@ from func.XTRA.Clap import MainClapExe
 from Powerpointer.app import get_bot_response
 # from auth.FaceAuth import FaceAuth
 from llm.Mistral2 import Mistral7B
+from func.Jukebox.YouTube import MusicPlayer
 
 MainClapExe()
 # Speak("Face Id required.")
@@ -102,10 +103,12 @@ if __name__=="__main__":
                 Speak(responce)
 
         elif "jarvis"==SQ.lower():
-            responce = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else*** **you can use the module that i provided if required**",link=link)
+            responce = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else, also don't dare to use input function*** **you can use the module that i provided if required**",link=link)
             code = Filter(responce)
             if code!=None:
                 if "from Genration_Of_Images import" in code or "import" not in code:
+                    exec(code)
+                elif "from func.Jukebox.YouTube import MusicPlayer" in code:
                     exec(code)
                 else:
                     Done=ExecCode(code)

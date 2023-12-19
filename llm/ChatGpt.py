@@ -14,18 +14,34 @@ print(IMGS)
 IMGS_TO_SHOW = Show_Image(IMGS)
 IMGS_TO_SHOW.open(0)
 IMGS_TO_SHOW.open(1)
-```"""},
-    {"role": "user", "content": "Jarvis, generate a cute cat image using Python."},
+```
+```python
+from func.Jukebox.YouTube import MusicPlayer
+#taks song name and it stats playing music
+ncs=MusicPlayer("ncs")
+#any btw 0 - 100
+ncs.Vol(30)
+#pause or play
+ncs.Play()
+ncs.Pause()
+#next song
+ncs.Next()
+#quit song
+ncs.Quit()
+     """},
+    {"role": "user", "content": "Jarvis generate a cute cat image using Python."},
     {"role": "assistant", "content": """```python
 from Genration_Of_Images import Generate_Images, Show_Image
 IMGS = Generate_Images(prompt="A playful kitten with bright eyes and a fluffy tail.")
 IMGS_TO_SHOW = Show_Image(IMGS)
 IMGS_TO_SHOW.open(0)
 ```"""},
-    {"role": "user", "content": "Jarvis, show me the next image using Python."},
+    {"role": "user", "content": "Jarvis show me the next image"},
     {"role": "assistant", "content": """```python
 IMGS_TO_SHOW.open(1)
-```"""}
+```"""},
+    {"role": "user", "content":"Jarvis play neffex cold"},
+    {"role": "assistant", "content":"""```python\nneffex=MusicPlayer("neffex cold song")```"""}
 ]
 
 def MsgDelAuto():
@@ -67,7 +83,7 @@ def ChatGpt(*args,**kwargs):
 
 if __name__=="__main__":
 
-    A="write 1 to 200 like 1 2 3 4 ..."
+    A=input(">>> ")
     C=t()
     ChatGpt(A)
     print(t()-C)

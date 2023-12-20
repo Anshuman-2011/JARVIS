@@ -2,36 +2,46 @@ from func.Osrc.Chat import Chat
 from func.Speak.SpeakOffline2 import Speak
 from func.Listen.ListenJs import Listen
 from func.Osrc.DataOnline import Online_Scraper
-#from func.OcrOnline import Ocr
 from func.XTRA.ExecCode import ExecCode
-# from llm.ChatGptColab import ChatGpt
+from func.Social.News import News
+from func.Ocr.OcrOffline import Ocr
+from func.XTRA.Clap import MainClapExe
+from func.Jukebox.YouTube import MusicPlayer
+
 from llm.Filter import Filter
+from llm.ChatGpt import ChatGpt,messages as gms
+from llm.Mistral2 import Mistral7B,messages as mms
+
 from buildin import GoodMsg
 from buildin import KnowApps
+
+from autofunc.youtube import GetTranscript
+from Powerpointer.app import get_bot_response
+
+from Genration_Of_Images import *
+
+
+from colorama import Fore, Back, Style
+import pyperclip as pi
+from mtranslate import translate
 import random
 import pygetwindow as gw
 import keyboard
 import time
 from os import startfile,getcwd
-from autofunc.youtube import GetTranscript
-from Genration_Of_Images import *
-from colorama import Fore, Back, Style
-import pyperclip as pi
-from mtranslate import translate
-#remove this 2 imports to run online
-from llm.ChatGpt import ChatGpt,messages
-from func.Ocr.OcrOffline import Ocr
-from func.XTRA.Clap import MainClapExe
-from Powerpointer.app import get_bot_response
-# from auth.FaceAuth import FaceAuth
-from llm.Mistral2 import Mistral7B
-from func.Jukebox.YouTube import MusicPlayer
 
-MainClapExe()
+# from auth.FaceAuth import FaceAuth
+
+# MainClapExe()
 # Speak("Face Id required.")
 # ID=FaceAuth()
 # Speak(f"Login with Face Id of {ID}")
-link=""
+
+#init
+gms.append({"role":"system","content":f"todays news are\n{News()}"})
+mms.append({"role":"system","content":f"todays news are\n{News()}"})
+
+
 
 if __name__=="__main__":
     while 1:
@@ -56,7 +66,7 @@ if __name__=="__main__":
             QL=QL.replace("jarvis","")
             QL=QL.replace("double","")
             QL=QL.replace("button","")
-            A=Ocr(QL.strip(),url=link)
+            A=Ocr(QL.strip())
             Speak(A)
         
         elif NQ in ["optimize this code","write code for this","optimise this code","jarvis optimise this code"]:
@@ -91,7 +101,7 @@ if __name__=="__main__":
             keyboard.press_and_release("ctrl + c")
             Speak("ok just give me a second")
             jo = pi.paste()
-            messages.append({"role": "user", "content": jo})
+            gms.append({"role": "user", "content": jo})
             Speak("data copied")
 
         elif ("summarize" in NQ or "transcribe" in NQ or "translate") and "video" in NQ and LQ<10:
@@ -103,7 +113,7 @@ if __name__=="__main__":
                 Speak(responce)
 
         elif "jarvis"==SQ.lower():
-            responce = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else, also don't dare to use input function*** **you can use the module that i provided if required**",link=link)
+            responce = ChatGpt(f"{Q} ***use python programing language. just write complete code nothing else, also don't dare to use input function*** **you can use the module that i provided if required**")
             code = Filter(responce)
             if code!=None:
                 if "from Genration_Of_Images import" in code or "import" not in code:
@@ -147,7 +157,7 @@ if __name__=="__main__":
                     elif Chat(QL)[1]>0.99:
                         Speak(Chat(QL)[0])
                     else:
-                        messages.append({"role": "user", "content": Q})
+                        gms.append({"role": "user", "content": Q})
                         reply=Mistral7B(Q+" ***reply like tony stark jarvis in less words and don't write code***")
                         Speak(reply)
         else :
@@ -157,7 +167,7 @@ if __name__=="__main__":
             elif Chat(QL)[1]>0.99:
                 Speak(Chat(QL)[0])
             else:
-                messages.append({"role": "user", "content": Q})
+                gms.append({"role": "user", "content": Q})
                 reply=Mistral7B(Q+" ***reply like tony stark jarvis in less words and don't write code***")
                 Speak(reply)
 
